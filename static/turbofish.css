@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'Droid Sans Mono';
+    src: url('DroidSansMono.woff') format('woff');
+}
+
+/* Basic layout */
+html {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Droid Sans Mono', sans-serif;
+    background-color: #111;
+    color: #fff;
+}
+
+.pond {
+    position: absolute;
+    right: 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    padding: .5em;
+    background-color: #222;
+    border: solid #444;
+    border-width: 1px 0 0 1px;
+    font-size: 1rem;
+}
+
+footer a {
+    position: relative;
+    color: #fff;
+    transition: color .2s;
+}
+
+footer a:hover {
+    color: #ddd;
+}
+
+/* Magic */
+t, u, r, b, o, f, i, s, h {
+    display: flex;
+    font-size: 9.111svh;
+    padding: 1svh;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+
+    position: relative;
+
+    animation-name: fish;
+    animation-fill-mode: backwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+t { animation-duration: 2.75s; animation-delay: 1.25s }
+u { animation-duration: 3.25s; animation-delay: 0.25s }
+r { animation-duration: 3s; animation-delay: 1s }
+b { animation-duration: 5s; animation-delay: 0s }
+o { animation-duration: 2.25s; animation-delay: 0.75s }
+f { animation-duration: 1.75s; animation-delay: 0.5s }
+i { animation-duration: 2.5s; animation-delay: 1s }
+s { animation-duration: 2s; animation-delay: 0s }
+h { animation-duration: 3.75s; animation-delay: 0.25s }
+
+t::before, t::after,
+u::before, u::after,
+r::before, r::after,
+b::before, b::after,
+o::before, o::after,
+f::before, f::after,
+i::before, i::after,
+s::before, s::after,
+h::before, h::after,
+body.not-found::before,
+body.not-found::after {
+    content: '∶';
+    order: -1;
+    display: block;
+
+    animation-name: turbo;
+    animation-duration: .2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+t::after,
+u::after,
+r::after,
+b::after,
+o::after,
+f::after,
+i::after,
+s::after,
+h::after,
+body.not-found::after {
+    animation-delay: 0.05s;
+    animation-direction: reverse;
+}
+
+@keyframes turbo {
+    0% { transform: rotateX(0deg) }
+    50% { transform: rotateX(90deg) }
+    100% { transform: rotateX(0deg) }
+}
+
+/* TODO: Find a better solution for this. Possibly something with multiple fish
+ *       per line and :first-of-type for line breaks?
+ */
+@keyframes fish {
+    from { right: 100vw }
+    to { right: -100vw }
+}
+
+.reverse t,
+.reverse u, .index u,
+.reverse r,
+.reverse b, .index b,
+.reverse o,
+.reverse f,
+.reverse i, .index i,
+.reverse s, .index s,
+.reverse h {
+    animation-direction: reverse;
+}
+
+.reverse t::before, .reverse t::after,
+.reverse u::before, .reverse u::after, .index u::before, .index u::after,
+.reverse r::before, .reverse r::after,
+.reverse b::before, .reverse b::after, .index b::before, .index b::after,
+.reverse o::before, .reverse o::after,
+.reverse f::before, .reverse f::after,
+.reverse i::before, .reverse i::after, .index i::before, .index i::after,
+.reverse s::before, .reverse s::after, .index s::before, .index s::after,
+.reverse h::before, .reverse h::after {
+    order: 1;
+}
+
+body.not-found {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 400%;
+}
+
+/* not-found turbofish */
+turbofish {
+    /* ferris-orange */
+    color: #f74c00;
+}
+
+turbofish::before {
+    content: '<';
+    color: #fff;
+}
+
+turbofish::after {
+    content: '>';
+    color: #fff;
+}
+
+/* Styling for the about page */
+body.about {
+    height: 100dvh;
+    overflow-y: auto;
+}
+
+body.about main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em;
+}
+
+h1 {
+    margin: 2rem 0 0;
+    font-size: min(2em, 7vw);
+}
+
+.fish-body a {
+    color: #f74c00;
+    transition: color .2s;
+}
+
+.fish-body a:hover {
+    color: #fc7335;
+}
+
+.fish-body {
+    max-width: 96ch;
+    padding: 1em;
+    line-height: 150%;
+}
+
+.fish-body ul {
+    padding-left: 2ch;
+    list-style: '- ';
+}
